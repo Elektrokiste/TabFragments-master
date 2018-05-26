@@ -1,0 +1,61 @@
+apply plugin: 'com.android.library'
+
+ext {
+    bintrayRepo = 'webview-android'
+    bintrayName = 'webview-android'
+
+    publishedGroupId = 'org.ptyagicodecamp'
+    libraryName = 'webview-android'
+    artifact = 'webview-android'
+
+    libraryDescription = 'A wrapper for WebViews on Native Android.'
+
+    siteUrl = 'https://github.com/ptyagicodecamp/webview-android'
+    gitUrl = 'https://github.com/ptyagicodecamp/webview-android.git'
+
+    libraryVersion = '0.0.2'
+
+    developerId = 'ptyagicodecamp'
+    developerName = 'Priyanka Tyagi'
+    developerEmail = 'ptyagicodecamp@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    testCompile 'junit:junit:4.12'
+}
+
+//Add these lines to publish library to bintray
+// Place it at the end of the file
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
